@@ -1,5 +1,5 @@
 {
-  "name": "vue-winbox",
+  "name": "vue-winbox-no-types",
   "description": "A wrapper component for WinBox.js with the ability to mount Vue components.",
   "keywords": [
     "vue",
@@ -12,7 +12,6 @@
   "module": "dist/vue-winbox.esm.js",
   "main": "dist/vue-winbox.cjs.js",
   "unpkg": "dist/vue-winbox.global.js",
-  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
@@ -49,7 +48,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wobsoriano/vue-winbox.git"
+    "url": "git+https://github.com/mheers/vue-winbox.git"
   },
-  "homepage": "https://github.com/wobsoriano/vue-winbox#readme"
+  "homepage": "https://github.com/mheers/vue-winbox#readme"
 }

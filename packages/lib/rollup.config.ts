@@ -36,10 +36,10 @@ export default [
   },
   {
     input: "src/index.ts",
-    plugins: [dts()],
-    output: {
-      file: "dist/index.d.ts",
-      format: "es"
-    }
+    // plugins: [dts()],
+    // output: {
+    //   file: "dist/index.d.ts",
+    //   format: "es"
+    // }
   }
 ]

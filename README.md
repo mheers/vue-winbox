@@ -25,37 +25,37 @@ yarn add vue-winbox
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import VueWinBox from 'vue-winbox'
+  import { defineComponent, ref } from "vue";
+  import VueWinBox from "vue-winbox";
 
-export default defineComponent({
-  components: { VueWinBox },
-  setup() {
-    const count = ref(0)
-    const options = {
-      title: 'Current count: 0',
-      class: 'modern',
-    }
-    const winboxRef = ref()
-    const winboxRef2 = ref()
+  export default defineComponent({
+    components: { VueWinBox },
+    setup() {
+      const count = ref(0);
+      const options = {
+        title: "Current count: 0",
+        class: "modern",
+      };
+      const winboxRef = ref();
+      const winboxRef2 = ref();
 
-    setInterval(() => {
-      count.value++
-      winboxRef.value?.winbox?.setTitle('Current count: ' + count.value)
-      winboxRef2.value?.winbox?.setTitle('Current count: ' + count.value)
-    }, 500)
+      setInterval(() => {
+        count.value++;
+        winboxRef.value?.winbox?.setTitle("Current count: " + count.value);
+        winboxRef2.value?.winbox?.setTitle("Current count: " + count.value);
+      }, 500);
 
-    return {
-      count,
-      options,
-      winboxRef,
-      winboxRef2,
-      onMove({ id }) {
+      return {
+        count,
+        options,
+        winboxRef,
+        winboxRef2,
+        onMove({ id }) {
           // id is the unique id of the window
-      }
-    }
-  }
-})
+        },
+      };
+    },
+  });
 </script>
 ```
 
@@ -73,14 +73,14 @@ Then import it in your `main.js` file.
 
 ```js
 // main.js
-import Vue from 'vue'
-import VueCompositionAPI from '@vue/composition-api'
-import VuePortal from '@linusborg/vue-simple-portal'
+import Vue from "vue";
+import VueCompositionAPI from "@vue/composition-api";
+import VuePortal from "@linusborg/vue-simple-portal";
 
-Vue.use(VueCompositionAPI)
+Vue.use(VueCompositionAPI);
 Vue.use(VuePortal, {
-  name: 'portal', // optional, use to rename component
-})
+  name: "portal", // optional, use to rename component
+});
 ```
 
 ```html
@@ -89,39 +89,38 @@ Vue.use(VuePortal, {
     <div>{{ count }}</div>
   </VueWinBox>
 </template>
-  
-<script>
-import { defineComponent } from 'vue'
-import VueWinBox from 'vue-winbox'
 
-export default {
-  components: { VueWinBox },
-  data: () => ({
+<script>
+  import { defineComponent } from "vue";
+  import VueWinBox from "vue-winbox";
+
+  export default {
+    components: { VueWinBox },
+    data: () => ({
       count: 0,
       options: {
-          title: 'Current count: 0',
-          class: 'modern'
-      }
-  }),
-  mounted() {
-    setInterval(() => {
-      this.count++
-      this.$refs?.winboxRef?.winbox?.setTitle('Current count: ' + this.count)
-    }, 500)
-  }
-}
+        title: "Current count: 0",
+        class: "modern",
+      },
+    }),
+    mounted() {
+      setInterval(() => {
+        this.count++;
+        this.$refs?.winboxRef?.winbox?.setTitle("Current count: " + this.count);
+      }, 500);
+    },
+  };
 </script>
 ```
 
 ## Props
 
-Name | Type | Default | Description |
------- | ------ | ------ | ------ |
-`options` | Object | [Reference](https://github.com/nextapps-de/winbox#options) | WinBox options. Applied only on mount.  |
-`portalComponent` | String | `portal` | Portal component name. Vue 2 only. |
-`portalSelector` | String | `selector` | Portal component selector attribute. Vue 2 only.  |
-`portalAttributes` | Object | `{}` | Other attributes. Vue 2 only. |
-
+| Name               | Type   | Default                                                    | Description                                      |
+| ------------------ | ------ | ---------------------------------------------------------- | ------------------------------------------------ |
+| `options`          | Object | [Reference](https://github.com/nextapps-de/winbox#options) | WinBox options. Applied only on mount.           |
+| `portalComponent`  | String | `portal`                                                   | Portal component name. Vue 2 only.               |
+| `portalSelector`   | String | `selector`                                                 | Portal component selector attribute. Vue 2 only. |
+| `portalAttributes` | Object | `{}`                                                       | Other attributes. Vue 2 only.                    |
 
 ## Methods
 
@@ -129,41 +128,40 @@ To update props and access methods/controls, just add a `ref` to the `VueWinBox`
 
 ```javascript
 // Set the window title
-this.$refs.winboxRef.winbox.setTitle('New title')
+this.$refs.winboxRef.winbox.setTitle("New title");
 
 // Custom Position / Size
-this.$refs.winboxRef.winbox.resize('50%', '50%').move('center', 'center')
+this.$refs.winboxRef.winbox.resize("50%", "50%").move("center", "center");
 
 // Add class
-this.$refs.winboxRef.winbox.addClass('modern')
+this.$refs.winboxRef.winbox.addClass("modern");
 
 // Focus a window (bring up to front)
-this.$refs.winboxRef.winbox.focus()
+this.$refs.winboxRef.winbox.focus();
 
 // Chaining Methods
 this.$refs.winboxRef.winbox
-    .setTitle('Title')
-    .resize('50%', '50%')
-    .move('center', 'center')
-    .focus()
+  .setTitle("Title")
+  .resize("50%", "50%")
+  .move("center", "center")
+  .focus();
 ```
 
 To reinitialize a closed window:
 
 ```javascript
-this.$refs.winboxRef.initialize()
+this.$refs.winboxRef.initialize();
 ```
 
 ## Events
 
-Name | Type | Default | Description |
------- | ------ | ------ | ------ |
-`onresize` | Function | - | Fired when the window resizes. |
-`onclose` | Function | - | Fired when the window is closing. |
-`onfocus` | Function | - | Fired when the window is in focus. |
-`onblur` | Function | - | - |
-`onmove` | Function | - | Fired when the window moves. |
-
+| Name       | Type     | Default | Description                        |
+| ---------- | -------- | ------- | ---------------------------------- |
+| `onresize` | Function | -       | Fired when the window resizes.     |
+| `onclose`  | Function | -       | Fired when the window is closing.  |
+| `onfocus`  | Function | -       | Fired when the window is in focus. |
+| `onblur`   | Function | -       | -                                  |
+| `onmove`   | Function | -       | Fired when the window moves.       |
 
 ## Vanilla WinBox.js
 
@@ -200,11 +198,20 @@ export default {
             const winbox = this.$WinBox({
                 title: 'Window title',
                 ...
-            })   
-            winbox.fullscreen()         
+            })
+            winbox.fullscreen()
         }
     }
 }
+```
+
+## Build and publish
+
+```bash
+cd packages/lib/
+pnpm install
+pnpm build
+npm publish
 ```
 
 ## Credits
@@ -213,4 +220,5 @@ export default {
 - [vue-demi](https://github.com/vueuse/vue-demi/) - Creates Universal Library for Vue 2 & 3
 
 ## License
+
 MIT - Copyright (c) 2021 [Robert Soriano](https://github.com/wobsoriano)
